@@ -1,0 +1,2 @@
+# Command Pattern Experiment
+A quick attempt at a naive implementation of the Command software design pattern using Rust's powerful enums to represent Command objects and implementing Receiver objects with a Trait.
