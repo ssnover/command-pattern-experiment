@@ -46,9 +46,6 @@ impl SimpleReceiver {
     }
 }
 
-//unsafe impl Send for SimpleReceiver {}
-//unsafe impl Sync for SimpleReceiver {}
-
 impl CommandReceiver for SimpleReceiver {
     fn handle_command(&mut self, event: CommandArgs) {
         match event {
@@ -75,9 +72,6 @@ impl ComplexReceiver {
         );
     }
 }
-
-//unsafe impl Send for ComplexReceiver {}
-//unsafe impl Sync for ComplexReceiver {}
 
 impl CommandReceiver for ComplexReceiver {
     fn handle_command(&mut self, event: CommandArgs) {
