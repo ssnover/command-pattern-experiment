@@ -127,21 +127,18 @@ fn main() {
         args: CommandArgs::MoreSimpleRequestArgs,
     });
 
-    let simple_receiver: Arc<Mutex<dyn CommandReceiver>> = Arc::new( Mutex::new(SimpleReceiver {data_link: "UART0".to_string() }));
-    let complex_receiver: Arc<Mutex<dyn CommandReceiver>> = Arc::new(Mutex::new(ComplexReceiver {logger_name: "/sys/log".to_string()}));
+    let simple_receiver: Arc<Mutex<dyn CommandReceiver>> = Arc::new(Mutex::new(SimpleReceiver {
+        data_link: "UART0".to_string(),
+    }));
+    let complex_receiver: Arc<Mutex<dyn CommandReceiver>> = Arc::new(Mutex::new(ComplexReceiver {
+        logger_name: "/sys/log".to_string(),
+    }));
 
     // Register the receivers for each command they handle
-    let mut command_receiver_registry =
-        HashMap::new();
-    command_receiver_registry.insert(
-        CommandId::SimpleDataRequest,
-        Arc::clone(&simple_receiver));
-    command_receiver_registry.insert(
-        CommandId::ComplexDataRequest,
-        Arc::clone(&complex_receiver));
-    command_receiver_registry.insert(
-        CommandId::MoreSimpleRequest,
-        Arc::clone(&simple_receiver));
+    let mut command_receiver_registry = HashMap::new();
+    command_receiver_registry.insert(CommandId::SimpleDataRequest, Arc::clone(&simple_receiver));
+    command_receiver_registry.insert(CommandId::ComplexDataRequest, Arc::clone(&complex_receiver));
+    command_receiver_registry.insert(CommandId::MoreSimpleRequest, Arc::clone(&simple_receiver));
 
     // Process the commands
     while command_queue.len() > 0 {
